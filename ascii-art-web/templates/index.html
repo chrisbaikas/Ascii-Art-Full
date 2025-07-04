@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ASCII Art Generator</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+</head>
+<body>
+  <div class="container">
+    <aside class="controls-pane">
+      <h1>ASCII Art Generator</h1>
+      <div id="error" class="error" hidden></div>
+      <form id="asciiForm">
+        <div class="form-group">
+          <label for="inputText">Provide Text <small>(Up to 1,000,000 characters)</small></label>
+          <textarea id="inputText" name="inputText" rows="3" maxlength="1000000" required></textarea>
+          <div id="charCounter" class="char-counter">0/1000000</div>
+        </div>
+
+        <!-- Custom dropdown for Banner -->
+        <div class="form-group">
+          <label for="banner">Select your Banner</label>
+          <div class="dropdown" id="banner-dropdown">
+            <div class="dropdown-toggle" id="banner-toggle">Standard</div>
+            <ul class="dropdown-menu" id="banner-menu">
+              <li data-value="standard">Standard</li>
+              <li data-value="shadow">Shadow</li>
+              <li data-value="thinkertoy">Thinkertoy</li>
+            </ul>
+            <input type="hidden" name="banner" id="banner" value="standard">
+          </div>
+        </div>
+
+        <!-- Align options -->
+        <div class="form-group">
+          <label>Select Alignment</label>
+          <div class="align-options">
+            <label><input type="radio" name="align" value="left" checked><span>⬅️</span></label>
+            <label><input type="radio" name="align" value="right"><span>➡️</span></label>
+          </div>
+        </div>
+
+        <!-- Global Color -->
+        <div class="form-group">
+          <label>Global Color</label>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div id="globalColorWheel"></div>
+            <div class="preset-swatches">
+              <label><input type="radio" name="color" value="#ffffff" /><span class="swatch" style="background:#fff;"></span></label>
+              <label><input type="radio" name="color" value="#000000" /><span class="swatch" style="background:#000;"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target letters -->
+        <div class="form-group">
+          <label for="colorTarget">Target letters (comma-sep)</label>
+          <input id="colorTarget" name="colorTarget" placeholder="e.g. A,B,C">
+        </div>
+
+        <!-- Target Color -->
+        <div class="form-group">
+          <label>Target Color</label>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div id="targetColorWheel"></div>
+            <div class="preset-swatches">
+              <label><input type="radio" name="targetColor" value="#ffffff" /><span class="swatch" style="background:#fff;"></span></label>
+              <label><input type="radio" name="targetColor" value="#000000" /><span class="swatch" style="background:#000;"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Background Color -->
+        <div class="form-group">
+          <label>Background Color</label>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div id="backgroundColorWheel"></div>
+            <div class="preset-swatches">
+              <label><input type="radio" name="backgroundPreset" value="#ffffff" /><span class="swatch" style="background:#ffffff;"></span></label>
+              <label><input type="radio" name="backgroundPreset" value="#eef3f3" checked /><span class="swatch" style="background:#eef3f3;"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clear button -->
+        <div class="form-group">
+          <button type="button" id="clearBtn">Clear</button>
+        </div>
+
+        <!-- Export Options -->
+        <div class="form-group">
+          <button type="button" id="exportToggleBtn">Export Options</button>
+        </div>
+
+        <div id="exportOptions" style="display: none;">
+          <div class="form-group">
+            <label for="filename">Filename</label>
+            <input type="text" id="filename" value="ascii-art-web-export" placeholder="ascii-art-web-export">
+          </div>
+          <div class="form-group">
+            <label for="format">Export Format</label>
+            <select id="format">
+              <option value="txt">.txt</option>
+              <option value="html">.html</option>
+              <option value="json">.json</option>
+              <option value="svg">.svg</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="button" id="exportBtn">Download</button>
+          </div>
+        </div>
+      </form>
+    </aside>
+
+    <main class="output-pane">
+      <div class="terminal-title">ASCII Output</div>
+      <pre id="asciiOutput" class="align-left"><div class="inner"></div></pre>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/color.js"></script>
+  <script src="/static/dropdown.js"></script>
+  <script src="/static/generate.js"></script>
+  <script src="/static/export.js"></script>
+  <script src="/static/main.js"></script>
+
+</body>
+</html>

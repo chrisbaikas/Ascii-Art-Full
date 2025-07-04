@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+  <title>Printable ASCII Table</title>
+  <style>
+    body { font-family: monospace; padding: 2rem; background-color: #eef3f3; }
+    table { border-collapse: collapse; width: auto; }
+    th, td { border: 1px solid #ccc; padding: 0.3rem 0.6rem; text-align: center; }
+    th { background: #f0f0f0; }
+    tbody tr:nth-child(odd) { background: #d8d4d4;}
+  </style>
+</head>
+<body>
+  <h1>Printable ASCII Characters (32–126)</h1>
+  <table>
+    <thead>
+      <tr><th>Code</th><th>Char</th></tr>
+    </thead>
+    <tbody id="asciiBody">
+      <!-- JS will populate here -->
+    </tbody>
+  </table>
+  <p><a href="/">← Back to ASCII Art</a></p>
+
+  <script>
+    (function() {
+      const tbody = document.getElementById('asciiBody');
+      for (let code = 32; code <= 126; code++) {
+        const tr = document.createElement('tr');
+        const tdCode = document.createElement('td');
+        tdCode.textContent = code;
+        const tdChar = document.createElement('td');
+        // show a visible placeholder for space (code 32)
+        tdChar.textContent = code === 32 ? '«space»' : String.fromCharCode(code);
+        tr.appendChild(tdCode);
+        tr.appendChild(tdChar);
+        tbody.appendChild(tr);
+      }
+    })();
+  </script>
+</body>
+</html>
