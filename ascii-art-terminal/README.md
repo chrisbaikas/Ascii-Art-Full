@@ -117,6 +117,3 @@ Covers:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-This project was created as part of a Zone01 educational project.  
-Feel free to use, modify, and extend it.
